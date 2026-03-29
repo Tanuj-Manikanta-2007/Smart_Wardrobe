@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SmartWardrobe</title>
+    <link rel="stylesheet" href="/static/app.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <h1>SmartWardrobe</h1>
+        <p class="muted">Django API + ML (FastAPI) gateway</p>
+      </header>
+
+      <section class="card">
+        <h2>Status</h2>
+        <div class="row">
+          <div>
+            <div class="label">API</div>
+            <div><a href="/api/" target="_blank" rel="noreferrer">/api/</a></div>
+          </div>
+          <div>
+            <div class="label">Auth</div>
+            <div class="inline">
+              <span id="authState" class="pill">Logged out</span>
+              <button id="logoutBtn" class="btn btn-secondary" type="button" disabled>Logout</button>
+            </div>
+            <div id="whoami" class="muted"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <section class="card">
+          <h2>1) Register</h2>
+          <form id="registerForm" class="stack">
+            <label>
+              <span>Email</span>
+              <input name="email" type="email" required />
+            </label>
+            <label>
+              <span>Password</span>
+              <input name="password" type="password" minlength="8" required />
+            </label>
+            <button class="btn" type="submit">Create account</button>
+            <pre id="registerOut" class="out" aria-live="polite"></pre>
+          </form>
+        </section>
+
+        <section class="card">
+          <h2>1) Login (JWT)</h2>
+          <form id="loginForm" class="stack">
+            <label>
+              <span>Email</span>
+              <input name="email" type="email" required />
+            </label>
+            <label>
+              <span>Password</span>
+              <input name="password" type="password" required />
+            </label>
+            <button class="btn" type="submit">Login</button>
+            <pre id="loginOut" class="out" aria-live="polite"></pre>
+          </form>
+        </section>
+      </section>
+
+      <section class="grid">
+        <section class="card">
+          <h2>2) Upload Clothing Image</h2>
+          <form id="uploadForm" class="stack">
+            <label>
+              <span>Image</span>
+              <input name="image" type="file" accept="image/*" required />
+            </label>
+            <label>
+              <span>Clothing Type (optional)</span>
+              <input name="clothing_type" type="text" placeholder="t-shirt, jeans, ..." />
+            </label>
+            <label>
+              <span>Color (optional)</span>
+              <input name="color" type="text" placeholder="black, blue, ..." />
+            </label>
+            <button class="btn" type="submit">Upload</button>
+            <pre id="uploadOut" class="out" aria-live="polite"></pre>
+          </form>
+        </section>
+
+        <section class="card">
+          <h2>4) Recommend Outfit</h2>
+          <div class="stack">
+            <button id="recommendBtn" class="btn" type="button">Recommend</button>
+            <pre id="recommendOut" class="out" aria-live="polite"></pre>
+          </div>
+        </section>
+      </section>
+
+      <section class="card">
+        <h2>7) Rating / Feedback</h2>
+        <form id="ratingForm" class="stack">
+          <div class="row">
+            <label>
+              <span>Outfit ID</span>
+              <input name="outfit_id" type="number" min="1" required />
+            </label>
+            <label>
+              <span>Rating (1-5)</span>
+              <input name="rating" type="number" min="1" max="5" required />
+            </label>
+          </div>
+          <button class="btn" type="submit">Submit rating</button>
+          <pre id="ratingOut" class="out" aria-live="polite"></pre>
+          <p class="muted">Backend can auto-trigger retraining after threshold ratings.</p>
+        </form>
+      </section>
+
+      <footer class="footer muted">
+        <div>Admin: <a href="/admin/" target="_blank" rel="noreferrer">/admin/</a></div>
+      </footer>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
