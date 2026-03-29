@@ -30,3 +30,4 @@ class ApiIndexView(APIView):
                 },
             }
         )
+# dumpy json
